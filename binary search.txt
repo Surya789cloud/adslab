@@ -1,0 +1,227 @@
+#include<stdlib.h>
+struct node
+{
+struct node*left;
+int data;
+struct node*right;
+};
+struct node*ROOT=NULL;
+void insert();
+void delete(int);
+void inorder(struct node *);
+void preorder(struct node*);
+void postorder(struct node*);
+void search();
+void main()
+{
+int opt,x;
+do
+{
+printf("\nMenu\n1.insert\n2.Delete\n3.inorder\n4.preoder\n5.postoder\n6.search\n7.exit");
+scanf("%d",&opt);
+switch(opt)
+{
+case 1:
+insert();
+break;
+case 2:
+printf("\nenter the data to be deleted");
+scanf("%d",&x);
+delete(x);
+break;
+case 3:
+inorder(ROOT);
+break;
+case 4:
+preorder(ROOT):
+break;
+case 5:
+postorder(ROOT);
+break;
+case 6;
+search();
+break;
+}
+}
+while(opt!=7);
+}
+void insert()
+{
+strcut node*ptr,*ne,*ptr1;
+int x;
+ne=(struct node*)malloc(size(struct node));
+if(ne==NULL)
+{
+printf("\ninsuffecient memory");
+}
+printf("enter the data to insert:");
+sanf("%d",&x);
+ne->right=ne->left=NULL;
+ne->data=x;
+if(ROOT==NULL)
+{
+ROOT=ne;
+return;
+}
+ptr=ROOT;
+while(ptr!=NULL)
+{
+if(x==ptr->data)
+{
+printf("\nitem present in the tree");
+break;
+}
+if(x>ptr->data)
+{
+ptr1=ptr;
+ptr=ptr->right;
+}
+else
+{
+ptr1=ptr;
+ptr=ptr->left;
+}
+}
+if(ptr==NULL)
+{
+if(x>ptr1->data)
+ptr1->right=ne;
+else
+ptr->left=ne;
+}
+}
+void search()
+{
+int x;
+struct node*ptr=ROOT;
+printf("\nenter the data to search");
+scanf("%d",&x);
+while(ptr!=NULL)
+{
+if(ptr->data==x)
+{
+printf("\ndata present");
+break;
+}
+if(x>ptr->data)
+ptr=ptr->right;
+else
+ptr=ptr->left;
+}
+if(ptr==NULL)
+printf("\ndata not presnt");
+}
+void inorder(stuct node*p)
+{
+if(p!=NULL)
+{
+inorder(p->left);
+printf("%d",p->data);
+inorder(p->right);
+}
+}
+void preorder(struct node*p)
+{
+if(p!=NULL)
+{
+postorder(p->left);
+postorder(p->right);
+printf("%d",p->data);
+}
+}
+void delete(int x)
+{
+struct node *parent,*p,*ptr;
+int d;
+if(ROOT==NULL)
+{
+printf("\ntree is empty");
+return;
+}
+parent=NULL;
+ptr=ROOT;
+while(ptr!=NULL)
+{
+if(ptr->data==x)
+break;
+parent=ptr;
+if(x>ptr->data)
+ptr=ptr->right;
+else
+ptr=ptr->left;
+}
+if(ptr==NULL)
+{
+printf(item is not present");
+return;
+}
+if(ptr->right==NULL&&ptr->left==NULL)
+{
+if(parent==NULL)
+ROOT=NULL;
+else if(parent->right==ptr)
+parent->right=NULL;
+else
+parent->left=NULL;
+printf("element deleted");
+free(ptr)
+return;
+}
+if(ptr->right!=NULL&&ptr->left=NULL)
+{
+p=ptr->right;
+while(p->left!=NULL)
+{
+p=p->left;
+}
+d=p->data;
+delete(p->data);
+ptr->data=d;
+return;
+}
+if(parent==NULL)
+{
+if(ptr->right==NULL)
+ROOT=ptr->left;
+else
+ROOT=ptr->right;
+}
+else
+{
+if(parent->right==ptr)
+{
+if(ptr->right==NULL)
+parent->right=ptr->left;
+else
+parent->right=ptr->right;
+}
+else
+{
+if(ptr->left==NULL)
+parent->right=ptr->left;
+else
+parent->right=ptr->right;
+}
+else
+{
+if(ptr->left==NULL)
+parent->left=ptr->right;
+else
+parent->left=ptr->left;
+}
+}
+printf("\nelement delted");
+free(ptr);
+return;
+}
+
+
+
+
+
+
+
+
+
+
+
